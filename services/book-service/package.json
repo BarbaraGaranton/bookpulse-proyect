@@ -1,0 +1,12 @@
+{
+  "name": "book-service",
+  "version": "1.0.0",
+  "description": "Microservicio de Libros de BookPulse",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0"
+  }
+}

@@ -1,0 +1,340 @@
+/* ============================================
+   BOOKPULSE - Estilos globales
+   Paleta: morado intenso sobre fondo crema
+============================================ */
+
+/* Variables de color del proyecto */
+:root {
+    --color-primary: #7B2FBE;
+    --color-primary-dark: #3B0764;
+    --color-primary-medium: #9D4EDD;
+    --color-primary-light: #E9D8FD;
+    --color-primary-soft: #F3E8FF;
+    --color-bg: #FAF8FF;
+    --color-white: #ffffff;
+    --color-text: #3B0764;
+    --color-text-soft: #9D4EDD;
+    --color-border: #E9D8FD;
+    --color-amor: #993556;
+    --color-amor-bg: #fbeaf0;
+    --color-amor-border: #ed93b1;
+    --color-odio: #993c1d;
+    --color-odio-bg: #faece7;
+    --color-odio-border: #f0997b;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos base del body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+}
+
+/* ============================================
+   NAVBAR
+============================================ */
+.navbar {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Logo con margaritas en las O */
+.logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.logo-flower {
+    color: var(--color-primary-medium);
+    font-style: normal;
+}
+
+/* Links de navegación */
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-primary-dark);
+    font-weight: 500;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ============================================
+   BOTONES
+============================================ */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 24px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-primary-medium);
+    border-radius: 24px;
+    padding: 9px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary-soft);
+}
+
+/* ============================================
+   FORMULARIOS
+============================================ */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    background-color: var(--color-primary-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--color-text);
+    font-family: inherit;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border-color: var(--color-primary);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Mensaje de error en formularios */
+.form-error {
+    font-size: 12px;
+    color: #e53e3e;
+    margin-top: 4px;
+    display: none;
+}
+
+.form-error.visible {
+    display: block;
+}
+
+/* ============================================
+   CARDS DE RESEÑA
+============================================ */
+.review-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.2s;
+}
+
+.review-card:hover {
+    box-shadow: 0 4px 16px rgba(123, 47, 190, 0.1);
+}
+
+.review-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.book-meta {
+    font-size: 12px;
+    color: var(--color-text-soft);
+    margin-top: 2px;
+}
+
+.emotion-badge {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary-light);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.review-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+/* Estrellas */
+.stars {
+    color: var(--color-primary);
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+/* Tags de personajes */
+.chars-label {
+    font-size: 11px;
+    color: var(--color-text-soft);
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.chars-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.char-tag {
+    font-size: 11px;
+    border-radius: 20px;
+    padding: 3px 10px;
+    border: 1px solid;
+}
+
+.char-tag.top {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-color: var(--color-primary-light);
+}
+
+.char-tag.amor {
+    background-color: var(--color-amor-bg);
+    color: var(--color-amor);
+    border-color: var(--color-amor-border);
+}
+
+.char-tag.odio {
+    background-color: var(--color-odio-bg);
+    color: var(--color-odio);
+    border-color: var(--color-odio-border);
+}
+
+/* ============================================
+   DECORACIONES (libritos y margaritas)
+============================================ */
+.deco-book {
+    color: var(--color-primary-light);
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.deco-flower {
+    color: var(--color-primary-medium);
+    font-size: 16px;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ============================================
+   MENSAJES DE ALERTA
+============================================ */
+.alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    display: none;
+}
+
+.alert.visible {
+    display: block;
+}
+
+.alert-error {
+    background-color: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #feb2b2;
+}
+
+.alert-success {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary-light);
+}
+
+/* ============================================
+   UTILIDADES
+============================================ */
+.text-center { text-align: center; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.hidden { display: none; }

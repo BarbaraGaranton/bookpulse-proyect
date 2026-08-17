@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookPulse - Mis lecturas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ============================================
+           DASHBOARD - Estilos específicos
+        ============================================ */
+
+        .dash-header {
+            background-color: var(--color-white);
+            border-bottom: 1px solid var(--color-border);
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dash-welcome h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+        }
+
+        .dash-welcome p {
+            font-size: 13px;
+            color: var(--color-text-soft);
+            margin-top: 4px;
+        }
+
+        .dash-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Estado vacío cuando no hay reseñas */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--color-text-soft);
+        }
+
+        .empty-state-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--color-primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        /* Loading spinner */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--color-text-soft);
+            font-size: 14px;
+        }
+
+        .loading-spinner {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 12px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Card de reseña expandida */
+        .review-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .review-date {
+            font-size: 11px;
+            color: var(--color-text-soft);
+        }
+
+        .review-genre {
+            font-size: 11px;
+            background-color: var(--color-primary-soft);
+            color: var(--color-primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        /* Emociones con emoji */
+        .emotion-amor { background-color: #fbeaf0; color: #993556; border-color: #ed93b1; }
+        .emotion-tristeza { background-color: #ebf4ff; color: #2b6cb0; border-color: #90cdf4; }
+        .emotion-impacto { background-color: #fffff0; color: #744210; border-color: #f6e05e; }
+        .emotion-enojo { background-color: #fff5f5; color: #c53030; border-color: #feb2b2; }
+        .emotion-confusion { background-color: #f0fff4; color: #276749; border-color: #9ae6b4; }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--color-text-soft);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border-color: #feb2b2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+   <nav class="navbar">
+    <a href="index.html" class="logo">
+        B<em class="logo-flower">✿</em><em class="logo-flower">✿</em>kPulse
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="dashboard.html" class="active">Mis lecturas</a></li>
+        <li><a href="nueva-resena.html">Nueva reseña</a></li>
+        <li><a href="perfil.html">Mi perfil</a></li>
+    </ul>
+    <div class="nav-actions">
+        <span id="nav-username" style="font-size:13px;color:var(--color-text-soft)"></span>
+        <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+</nav>
+
+    <!-- HEADER DEL DASHBOARD -->
+    <div class="dash-header">
+        <div class="dash-welcome">
+            <h2 id="welcome-msg">Hola 👋</h2>
+            <p>Tus experiencias de lectura</p>
+        </div>
+        <a href="nueva-resena.html" class="btn-primary">+ Nueva reseña</a>
+    </div>
+
+    <!-- CUERPO DEL DASHBOARD -->
+    <div class="dash-body">
+
+        <!-- Alerta -->
+        <div id="alert" class="alert"></div>
+
+        <!-- Sección de reseñas -->
+        <div class="section-header">
+            <div class="section-title">
+                📚 Mis lecturas
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading">
+            <span class="loading-spinner">📖</span>
+            Cargando tus lecturas...
+        </div>
+
+        <!-- Contenedor de reseñas -->
+        <div id="reviews-container"></div>
+
+        <!-- Estado vacío -->
+        <div id="empty-state" class="empty-state hidden">
+            <div class="empty-state-icon">📭</div>
+            <h3>Todavía no registraste ninguna lectura</h3>
+            <p>¡Empezá a registrar tus experiencias de lectura!</p>
+            <a href="nueva-resena.html" class="btn-primary">Registrar mi primera lectura 💜</a>
+        </div>
+
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

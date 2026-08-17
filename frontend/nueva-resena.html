@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookPulse - Nueva reseña</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ============================================
+           NUEVA RESEÑA - Estilos específicos
+        ============================================ */
+
+        .form-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .form-page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-page-subtitle {
+            font-size: 14px;
+            color: var(--color-text-soft);
+            margin-bottom: 32px;
+        }
+
+        .form-section {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .form-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* Selector de emociones */
+        .emotion-grid {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .emotion-option {
+            background-color: var(--color-primary-soft);
+            border: 1.5px solid var(--color-border);
+            border-radius: 24px;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .emotion-option:hover {
+            border-color: var(--color-primary);
+        }
+
+        .emotion-option.selected {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* Input oculto para la emoción seleccionada */
+        #emotion-value {
+            display: none;
+        }
+
+        /* Selector de estrellas */
+        .stars-input {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star-btn {
+            font-size: 28px;
+            color: var(--color-primary-light);
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.15s, transform 0.15s;
+            line-height: 1;
+        }
+
+        .star-btn:hover,
+        .star-btn.active {
+            color: var(--color-primary);
+            transform: scale(1.1);
+        }
+
+        .rating-text {
+            font-size: 12px;
+            color: var(--color-text-soft);
+            margin-top: 8px;
+        }
+
+        /* Sección de personajes */
+        .chars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .char-input-group {
+            background-color: var(--color-primary-soft);
+            border: 1.5px solid var(--color-border);
+            border-radius: 12px;
+            padding: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .char-input-group:focus-within {
+            border-color: var(--color-primary);
+        }
+
+        .char-input-label {
+            font-size: 11px;
+            color: var(--color-text-soft);
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .char-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            font-size: 13px;
+            color: var(--color-text);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .char-input::placeholder {
+            color: #bbb;
+        }
+
+        .char-special-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .char-amor { border-color: var(--color-amor-border) !important; }
+        .char-amor .char-input-label { color: var(--color-amor); }
+
+        .char-odio { border-color: var(--color-odio-border) !important; }
+        .char-odio .char-input-label { color: var(--color-odio); }
+
+        /* Botón submit */
+        .submit-section {
+            text-align: center;
+            padding: 8px 0 32px;
+        }
+
+        .submit-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: 24px;
+            padding: 14px 48px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-family: inherit;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        .submit-btn:disabled {
+            background-color: var(--color-primary-light);
+            cursor: not-allowed;
+        }
+
+        .submit-deco {
+            font-size: 20px;
+            color: var(--color-primary-light);
+            margin-top: 16px;
+        }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--color-text-soft);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border-color: #feb2b2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            B<em class="logo-flower">✿</em><em class="logo-flower">✿</em>kPulse
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="dashboard.html" >Mis lecturas</a></li>
+            <li><a href="nueva-resena.html" class="active">Nueva reseña</a></li>
+            <li><a href="perfil.html">Mi perfil</a></li>
+        </ul>
+        <div class="nav-actions">
+        <span id="nav-username" style="font-size:14px;color:var(--color-text-soft)"></span>
+        <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+</nav>
+
+    <!-- FORMULARIO -->
+    <div class="form-wrapper">
+        <h1 class="form-page-title">Nueva experiencia de lectura</h1>
+        <p class="form-page-subtitle">Contanos cómo te hizo sentir este libro ✿</p>
+
+        <!-- Alerta -->
+        <div id="alert" class="alert"></div>
+
+        <form id="review-form" onsubmit="handleSubmit(event)">
+
+            <!-- SECCIÓN 1: Información del libro -->
+            <div class="form-section">
+                <div class="form-section-title">📖 Información del libro</div>
+                <div class="form-group">
+                    <label class="form-label" for="book-title">Título del libro *</label>
+                    <input
+                        type="text"
+                        id="book-title"
+                        class="form-input"
+                        placeholder="Ej: ACOTAR"
+                        required
+                    >
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="book-author">Autor</label>
+                        <input
+                            type="text"
+                            id="book-author"
+                            class="form-input"
+                            placeholder="Ej: Sarah J. Maas"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="book-genre">Género</label>
+                        <input
+                            type="text"
+                            id="book-genre"
+                            class="form-input"
+                            placeholder="Ej: Fantasía"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: Tu experiencia -->
+            <div class="form-section">
+                <div class="form-section-title">💜 Tu experiencia</div>
+                <div class="form-group">
+                    <label class="form-label" for="review-text">¿Qué te hizo sentir este libro? *</label>
+                    <textarea
+                        id="review-text"
+                        class="form-textarea"
+                        placeholder="Escribí libremente sobre tu experiencia, emociones y pensamientos..."
+                        rows="5"
+                        required
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: Emoción principal -->
+            <div class="form-section">
+                <div class="form-section-title">😊 Emoción principal *</div>
+                <div class="emotion-grid">
+                    <div class="emotion-option" onclick="selectEmotion('amor')">😍 Amor</div>
+                    <div class="emotion-option" onclick="selectEmotion('tristeza')">😢 Tristeza</div>
+                    <div class="emotion-option" onclick="selectEmotion('impacto')">😱 Impacto</div>
+                    <div class="emotion-option" onclick="selectEmotion('enojo')">😡 Enojo</div>
+                    <div class="emotion-option" onclick="selectEmotion('confusión')">🤯 Confusión</div>
+                </div>
+                <input type="hidden" id="emotion-value">
+            </div>
+
+            <!-- SECCIÓN 4: Puntuación -->
+            <div class="form-section">
+                <div class="form-section-title">⭐ Puntuación *</div>
+                <div class="stars-input">
+                    <button type="button" class="star-btn" onclick="setRating(1)">★</button>
+                    <button type="button" class="star-btn" onclick="setRating(2)">★</button>
+                    <button type="button" class="star-btn" onclick="setRating(3)">★</button>
+                    <button type="button" class="star-btn" onclick="setRating(4)">★</button>
+                    <button type="button" class="star-btn" onclick="setRating(5)">★</button>
+                </div>
+                <div class="rating-text" id="rating-text">Seleccioná una puntuación</div>
+                <input type="hidden" id="rating-value" value="0">
+            </div>
+
+            <!-- SECCIÓN 5: Personajes -->
+            <div class="form-section">
+                <div class="form-section-title">✨ Personajes</div>
+                <div class="chars-grid">
+                    <div class="char-input-group">
+                        <span class="char-input-label">✦ Top 1</span>
+                        <input type="text" class="char-input" id="char-top1" placeholder="Nombre del personaje">
+                    </div>
+                    <div class="char-input-group">
+                        <span class="char-input-label">✦ Top 2</span>
+                        <input type="text" class="char-input" id="char-top2" placeholder="Nombre del personaje">
+                    </div>
+                    <div class="char-input-group">
+                        <span class="char-input-label">✦ Top 3</span>
+                        <input type="text" class="char-input" id="char-top3" placeholder="Nombre del personaje">
+                    </div>
+                </div>
+                <div class="char-special-row">
+                    <div class="char-input-group char-amor">
+                        <span class="char-input-label">♥ ¿De quién te enamoraste?</span>
+                        <input type="text" class="char-input" id="char-amor" placeholder="Nombre del personaje">
+                    </div>
+                    <div class="char-input-group char-odio">
+                        <span class="char-input-label">✗ ¿A quién odiaste?</span>
+                        <input type="text" class="char-input" id="char-odio" placeholder="Nombre del personaje">
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN SUBMIT -->
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    Guardar experiencia 💜
+                </button>
+                <div class="submit-deco">📚 ✿ 📖 ✿ 📚</div>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="js/nueva-resena.js"></script>
+</body>
+</html>

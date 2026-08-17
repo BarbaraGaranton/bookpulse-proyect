@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookPulse - Tu espacio emocional de lectura</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ============================================
+           LANDING PAGE - Estilos específicos
+        ============================================ */
+
+        /* Sección hero principal */
+        .hero {
+            padding: 80px 40px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-tag {
+            font-size: 13px;
+            color: var(--color-primary-medium);
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero-quote {
+            font-size: 15px;
+            color: var(--color-primary);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            border-left: 3px solid var(--color-primary-medium);
+            padding-left: 16px;
+        }
+
+        .hero-quote span {
+            font-size: 13px;
+            color: var(--color-text-soft);
+            display: block;
+            margin-top: 6px;
+            font-style: normal;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+        }
+
+        /* Decoración hero derecha */
+        .hero-deco {
+            width: 280px;
+            height: 320px;
+            background: var(--color-primary-soft);
+            border-radius: 20px;
+            border: 1.5px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            gap: 12px;
+        }
+
+        .hero-deco-icon {
+            font-size: 80px;
+        }
+
+        .hero-deco-text {
+            font-size: 13px;
+            color: var(--color-text-soft);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .flower-corner {
+            position: absolute;
+            font-size: 24px;
+            color: var(--color-primary-medium);
+        }
+
+        .flower-corner.top-right { top: -10px; right: -10px; }
+        .flower-corner.bottom-left { bottom: -10px; left: -10px; }
+
+        /* Sección de características */
+        .features-section {
+            background-color: var(--color-primary-soft);
+            padding: 60px 40px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .features-section h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .features-subtitle {
+            font-size: 14px;
+            color: var(--color-text-soft);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 16px rgba(123, 47, 190, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        /* Sección CTA final */
+        .cta-section {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 15px;
+            color: var(--color-text-soft);
+            margin-bottom: 28px;
+        }
+
+        .cta-decos {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+            font-size: 22px;
+            color: var(--color-primary-light);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-border);
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--color-text-soft);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            B<em class="logo-flower">✿</em><em class="logo-flower">✿</em>kPulse
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="dashboard.html">Mis lecturas</a></li>
+            <li><a href="nueva-resena.html">Nueva reseña</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="login.html" class="btn-secondary">Iniciar sesión</a>
+            <a href="login.html" class="btn-primary">Crear cuenta</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">
+                ✦ Tu espacio emocional de lectura
+            </div>
+            <h1 class="hero-title">
+                Expresá lo que los libros te hacen sentir
+            </h1>
+            <blockquote class="hero-quote">
+                "Un lector vive mil vidas antes de morir. Aquel que nunca lee, vive solo una."
+                <span>— George R.R. Martin</span>
+            </blockquote>
+            <div class="hero-actions">
+                <a href="login.html" class="btn-primary">Crear cuenta gratis</a>
+                <a href="login.html" class="btn-secondary">Iniciar sesión</a>
+            </div>
+        </div>
+        <div class="hero-deco">
+            <span class="flower-corner top-right">✿</span>
+            <span class="flower-corner bottom-left">✿</span>
+            <span class="hero-deco-icon">📚</span>
+            <span class="hero-deco-text">Tu diario emocional de lecturas</span>
+        </div>
+    </section>
+
+    <!-- CARACTERÍSTICAS -->
+    <section class="features-section">
+        <h2>¿Qué podés hacer en BookPulse?</h2>
+        <p class="features-subtitle">Un espacio pensado para los que viven entre páginas 💜</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💜</div>
+                <h3>Expresá emociones</h3>
+                <p>Registrá lo que sentiste al leer cada libro — amor, tristeza, impacto y más</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Puntuá tus lecturas</h3>
+                <p>Calificá cada libro de 1 a 5 estrellas y llevá un registro de tus favoritos</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <h3>Tus personajes</h3>
+                <p>Guardá tu top de favoritos, los que amaste y los que odiaste de cada historia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-section">
+        <h2>¿Lista para empezar?</h2>
+        <p>Creá tu cuenta y comenzá a registrar tus experiencias de lectura</p>
+        <a href="login.html" class="btn-primary">Empezar ahora 💜</a>
+        <div class="cta-decos">
+            <span>📚</span>
+            <span>✿</span>
+            <span>📖</span>
+            <span>✿</span>
+            <span>📚</span>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>BookPulse 💜 — Tu espacio emocional de lectura</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookPulse - Mi perfil</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ============================================
+           PERFIL - Estilos específicos
+        ============================================ */
+
+        .perfil-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .perfil-header {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .perfil-avatar {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--color-white);
+            margin: 0 auto 16px;
+            font-weight: 600;
+        }
+
+        .perfil-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .perfil-email {
+            font-size: 14px;
+            color: var(--color-text-soft);
+        }
+
+        .perfil-deco {
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            font-size: 22px;
+            color: var(--color-primary-medium);
+        }
+
+        .perfil-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--color-text-soft);
+        }
+
+        .perfil-info {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .perfil-info-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .perfil-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-primary-soft);
+            font-size: 14px;
+        }
+
+        .perfil-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .perfil-info-label {
+            color: var(--color-text-soft);
+        }
+
+        .perfil-info-value {
+            color: var(--color-primary-dark);
+            font-weight: 500;
+        }
+
+        .btn-logout-full {
+            width: 100%;
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border: 1px solid #feb2b2;
+            border-radius: 24px;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-logout-full:hover {
+            background-color: #e53e3e;
+            color: white;
+        }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--color-text-soft);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border-color: #feb2b2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            B<em class="logo-flower">✿</em><em class="logo-flower">✿</em>kPulse
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="dashboard.html">Mis lecturas</a></li>
+            <li><a href="nueva-resena.html">Nueva reseña</a></li>
+            <li><a href="perfil.html" class="active">Mi perfil</a></li>
+        </ul>
+        <div class="nav-actions">
+            <span id="nav-username" style="font-size:13px;color:var(--color-text-soft)"></span>
+            <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+        </div>
+    </nav>
+
+    <!-- PERFIL -->
+    <div class="perfil-wrapper">
+
+        <!-- Alerta -->
+        <div id="alert" class="alert"></div>
+
+        <!-- Header del perfil -->
+        <div class="perfil-header">
+            <span class="perfil-deco">✿</span>
+            <div class="perfil-avatar" id="perfil-avatar">?</div>
+            <div class="perfil-name" id="perfil-name">Cargando...</div>
+            <div class="perfil-email" id="perfil-email"></div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="perfil-stats">
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-number" id="total-reviews">0</div>
+                <div class="stat-label">Lecturas registradas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💜</div>
+                <div class="stat-number" id="emocion-favorita">-</div>
+                <div class="stat-label">Emoción más frecuente</div>
+            </div>
+        </div>
+
+        <!-- Información del perfil -->
+        <div class="perfil-info">
+            <div class="perfil-info-title">📋 Información de la cuenta</div>
+            <div class="perfil-info-row">
+                <span class="perfil-info-label">Usuario</span>
+                <span class="perfil-info-value" id="info-username">-</span>
+            </div>
+            <div class="perfil-info-row">
+                <span class="perfil-info-label">Email</span>
+                <span class="perfil-info-value" id="info-email">-</span>
+            </div>
+            <div class="perfil-info-row">
+                <span class="perfil-info-label">Miembro desde</span>
+                <span class="perfil-info-value" id="info-fecha">-</span>
+            </div>
+        </div>
+
+        <!-- Botón cerrar sesión -->
+        <button class="btn-logout-full" onclick="logout()">
+            Cerrar sesión
+        </button>
+
+    </div>
+
+    <script src="js/perfil.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# No subir las dependencias de Node
+node_modules/
+services/user-service/node_modules/
+services/book-service/node_modules/
+services/review-service/node_modules/
+
+# No subir los archivos de variables de entorno
+# porque contienen datos sensibles
+services/user-service/.env
+services/book-service/.env
+services/review-service/.env
+
+# No subir archivos del sistema
+.DS_Store
+Thumbs.db
