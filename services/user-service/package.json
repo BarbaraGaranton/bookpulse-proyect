@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Microservicio de usuarios de BookPulse",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
