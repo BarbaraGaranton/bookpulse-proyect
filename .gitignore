@@ -9,6 +9,7 @@ services/review-service/node_modules/
 services/user-service/.env
 services/book-service/.env
 services/review-service/.env
+.env
 
 # No subir archivos del sistema
 .DS_Store
