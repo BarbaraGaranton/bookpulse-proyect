@@ -13,6 +13,7 @@ window.addEventListener('load', () => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
 
     // Si no hay sesión mando al login
     if (!token || !userId) {
@@ -24,13 +25,13 @@ window.addEventListener('load', () => {
     document.getElementById('nav-username').textContent = username;
 
     // Cargo los datos del perfil
-    loadPerfil(userId, token, username);
+    loadPerfil(userId, token, username, email);
 });
 
 // ============================================
 // FUNCIÓN: Cargar datos del perfil
 // ============================================
-const loadPerfil = async (userId, token, username) => {
+const loadPerfil = async (userId, token, username, email) => {
     try {
         // Traigo las reseñas del usuario para las estadísticas
         const response = await fetch(`${REVIEW_SERVICE}/reviews/user/${userId}`, {
@@ -59,6 +60,10 @@ const loadPerfil = async (userId, token, username) => {
         document.getElementById('perfil-name').textContent = username;
         document.getElementById('nav-username').textContent = username;
         document.getElementById('info-username').textContent = username;
+
+        // Muestro el email
+        document.getElementById('perfil-email').textContent = email;
+        document.getElementById('info-email').textContent = email;
 
         // Muestro el total de lecturas
         document.getElementById('total-reviews').textContent = reviews.length;

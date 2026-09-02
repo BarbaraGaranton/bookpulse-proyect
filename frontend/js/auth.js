@@ -89,6 +89,7 @@ const handleLogin = async (event) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('username', data.username);
+        localStorage.setItem('email', data.email);
 
         // Muestro mensaje de éxito y redirijo al dashboard
         showAlert('¡Bienvenida! Redirigiendo...', 'success');

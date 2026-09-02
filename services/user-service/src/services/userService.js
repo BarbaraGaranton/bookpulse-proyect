@@ -104,7 +104,7 @@ const loginUser = (email, password, callback) => {
             );
 
             // Devuelvo el token y los datos básicos del usuario
-            callback(null, { token, userId: user.id, username: user.username });
+            callback(null, { token, userId: user.id, username: user.username, email: user.email });
         });
     });
 };

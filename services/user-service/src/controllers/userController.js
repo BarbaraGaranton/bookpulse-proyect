@@ -35,7 +35,7 @@ const login = (req, res) => {
         if (result.error) return res.status(400).json({ error: result.error });
 
         // Si todo está bien devuelvo el token y los datos del usuario
-        res.json({ message: 'Login exitoso 💜', token: result.token, userId: result.userId, username: result.username });
+        res.json({ message: 'Login exitoso 💜', token: result.token, userId: result.userId, username: result.username, email: result.email });
     });
 };
 
