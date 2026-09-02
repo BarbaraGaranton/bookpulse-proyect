@@ -4,7 +4,7 @@
 // ============================================
 
 // URL base del user-service
-const USER_SERVICE = 'http://localhost:3003';
+const USER_SERVICE = 'https://bookpulse-api.onrender.com';
 
 // ============================================
 // FUNCIÓN: Mostrar tab de login o registro

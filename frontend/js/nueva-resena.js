@@ -3,8 +3,8 @@
 // Conectado al book-service (3002) y review-service (3001)
 // ============================================
 
-const BOOK_SERVICE = 'http://localhost:3002';
-const REVIEW_SERVICE = 'http://localhost:3001';
+const BOOK_SERVICE = 'https://bookpulse-api.onrender.com';
+const REVIEW_SERVICE = 'https://bookpulse-api.onrender.com';
 
 // Variable para guardar el rating seleccionado
 let selectedRating = 0;

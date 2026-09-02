@@ -3,8 +3,8 @@
 // Conectado al review-service en puerto 3001
 // ============================================
 
-const REVIEW_SERVICE = 'http://localhost:3001';
-const USER_SERVICE = 'http://localhost:3003';
+const REVIEW_SERVICE = 'https://bookpulse-api.onrender.com';
+const USER_SERVICE = 'https://bookpulse-api.onrender.com';
 
 // ============================================
 // Al cargar la página verifico si hay sesión

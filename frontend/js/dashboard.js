@@ -4,7 +4,7 @@
 // ============================================
 
 // URLs de los servicios
-const REVIEW_SERVICE = 'http://localhost:3001';
+const REVIEW_SERVICE = 'https://bookpulse-api.onrender.com';
 
 // ============================================
 // Al cargar la página verifico si hay sesión
